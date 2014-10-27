@@ -1,0 +1,102 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+int data;
+node *left;
+node*right;
+};
+node*NewNode(int data)
+{
+    node *NEW=new node();
+    NEW->data=data;
+    NEW->left=NULL;
+    NEW->right=NULL;
+    return NEW;
+}
+void print(node*root)
+{
+    if(root==NULL)
+        return;
+    cout<<root->data<<" ";
+    print(root->left);
+    print(root->right);
+}
+void reverse_level(node *root,int level_no)
+{
+    deque<node*>que;
+    que.push_back(root);
+    que.push_back(NULL);
+    int level=0;
+    while((!que.empty())&&(level!=level_no-1))
+    {
+        
+        cout<<level<<"\n";
+        node*temp;
+        temp=que.front();
+        que.pop_front();
+        if(temp==NULL)
+        {
+            if(!que.empty())
+                
+            {
+                que.push_back(NULL);
+                level++;
+            cout<<level<<"\n";
+            }
+            else
+            {
+                break;
+            }
+        }
+        if(temp!=NULL)
+        {
+            
+        
+        if(temp->left!=NULL)
+            que.push_back(temp->left);
+        if(temp->right!=NULL)
+            que.push_back(temp->right);
+    }}
+    if(level==level_no-1)
+    {
+        cout<<"hello";
+        while(!que.empty())
+        {
+            node*tem;
+            node*tem2;
+        if(que.front()!=NULL)
+        {tem=que.front();que.pop_front();}
+        else
+            tem=NULL;
+        if(que.back()!=NULL)
+        {tem2=que.back();que.pop_back();}
+        else
+        tem2=NULL;
+        node*temp3;
+        
+        if(tem!=NULL&&tem2!=NULL)
+        {temp3=tem->left;
+        tem->left=tem2->right;
+        tem2->right=temp3;
+        
+        temp3=tem->right;
+        tem->right=tem2->left;
+        tem2->left=temp3;
+        }
+        if(tem==tem2)break;
+        
+        }
+    }
+    print(root);
+}
+int main()
+{
+    node*A=NewNode(1);
+    A->left=NewNode(2);
+    A->right=NewNode(3);
+    A->left->left=NewNode(4);
+    A->left->right=NewNode(5);
+    A->right->left=NewNode(6);
+    A->right->right=NewNode(7);
+    reverse_level(A,2);
+}
